@@ -1,4 +1,4 @@
-# Experiment …… ∆ ∞ …… <a href="http://bl.ocks.org/3071239" title="view this gist via bl.ocks.org">∆</a> <a href="http://bl.ocks.org/GerHobbelt" title="view a list of all my gists at bl.ocks.org">∞</a>
+# Experiment …… <a href="http://bl.ocks.org/3071239" title="view this gist via bl.ocks.org">∆</a> <a href="http://bl.ocks.org/GerHobbelt" title="view a list of all my gists at bl.ocks.org">∞</a>
 
 Derived from the D3.js example [force_cluster.html](https://github.com/mbostock/d3/blob/master/examples/force/force-cluster.html)
 
