@@ -1,295 +1,224 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Clustered Network</title>
-    <script src="http://d3js.org/d3.v2.js"></script>
+<meta charset="utf-8">
+<head>
+<style>
 
-    <style type="text/css">
-svg {
-  border: 1px solid #ccc;
-}
 body {
-  font: 10px sans-serif;
-}
-circle.node {
-  fill: lightsteelblue;
-  stroke: #555;
-  stroke-width: 3px;
-}
-circle.leaf {
-  stroke: #fff;
-  stroke-width: 1.5px;
-}
-path.hull {
-  fill: lightsteelblue;
-  fill-opacity: 0.3;
-}
-line.link {
-  stroke: #333;
-  stroke-opacity: 0.5;
-  pointer-events: none;
-}
-    </style>
-  </head>
-  <body>
-    <script type="text/javascript">
-var width = 960,     // svg width
-    height = 600,     // svg height
-    dr = 4,      // default point radius
-    off = 15,    // cluster hull offset
-    expand = {}, // expanded clusters
-    data, net, force, hullg, hull, linkg, link, nodeg, node;
-
-var curve = d3.svg.line()
-    .interpolate("cardinal-closed")
-    .tension(.85);
-
-var fill = d3.scale.category20();
-
-function noop() { return false; }
-
-function nodeid(n) {
-  return n.size ? "_g_"+n.group : n.name;
+  font-family: Arial;
 }
 
-function linkid(l) {
-  var u = nodeid(l.source),
-      v = nodeid(l.target);
-  return u<v ? u+"|"+v : v+"|"+u;
+.background {
+  fill: none;
+  pointer-events: all;
 }
 
-function getGroup(n) { return n.group; }
-
-// constructs the network to visualize
-function network(data, prev, index, expand) {
-  expand = expand || {};
-  var gm = {},    // group map
-      nm = {},    // node map
-      lm = {},    // link map
-      gn = {},    // previous group nodes
-      gc = {},    // previous group centroids
-      nodes = [], // output nodes
-      links = []; // output links
-
-  // process previous nodes for reuse or centroid calculation
-  if (prev) {
-    prev.nodes.forEach(function(n) {
-      var i = index(n), o;
-      if (n.size > 0) {
-        gn[i] = n;
-        n.size = 0;
-      } else {
-        o = gc[i] || (gc[i] = {x:0,y:0,count:0});
-        o.x += n.x;
-        o.y += n.y;
-        o.count += 1;
-      }
-    });
-  }
-
-  // determine nodes
-  for (var k=0; k<data.nodes.length; ++k) {
-    var n = data.nodes[k],
-        i = index(n),
-        l = gm[i] || (gm[i]=gn[i]) || (gm[i]={group:i, size:0, nodes:[]});
-
-    if (expand[i]) {
-      // the node should be directly visible
-      nm[n.name] = nodes.length;
-      nodes.push(n);
-      if (gn[i]) {
-        // place new nodes at cluster location (plus jitter)
-        n.x = gn[i].x + Math.random();
-        n.y = gn[i].y + Math.random();
-      }
-    } else {
-      // the node is part of a collapsed cluster
-      if (l.size == 0) {
-        // if new cluster, add to set and position at centroid of leaf nodes
-        nm[i] = nodes.length;
-        nodes.push(l);
-        if (gc[i]) {
-          l.x = gc[i].x / gc[i].count;
-          l.y = gc[i].y / gc[i].count;
-        }
-      }
-      l.nodes.push(n);
-    }
-  // always count group size as we also use it to tweak the force graph strengths/distances
-    l.size += 1;
-  n.group_data = l;
-  }
-
-  for (i in gm) { gm[i].link_count = 0; }
-
-  // determine links
-  for (k=0; k<data.links.length; ++k) {
-    var e = data.links[k],
-        u = index(e.source),
-        v = index(e.target);
-  if (u != v) {
-    gm[u].link_count++;
-    gm[v].link_count++;
-  }
-    u = expand[u] ? nm[e.source.name] : nm[u];
-    v = expand[v] ? nm[e.target.name] : nm[v];
-    var i = (u<v ? u+"|"+v : v+"|"+u),
-        l = lm[i] || (lm[i] = {source:u, target:v, size:0});
-    l.size += 1;
-  }
-  for (i in lm) { links.push(lm[i]); }
-
-  return {nodes: nodes, links: links};
+rect {
+  fill: none;
+  stroke: white;
 }
 
-function convexHulls(nodes, index, offset) {
-  var hulls = {};
 
-  // create point sets
-  for (var k=0; k<nodes.length; ++k) {
-    var n = nodes[k];
-    if (n.size) continue;
-    var i = index(n),
-        l = hulls[i] || (hulls[i] = []);
-    l.push([n.x-offset, n.y-offset]);
-    l.push([n.x-offset, n.y+offset]);
-    l.push([n.x+offset, n.y-offset]);
-    l.push([n.x+offset, n.y+offset]);
-  }
-
-  // create convex hulls
-  var hullset = [];
-  for (i in hulls) {
-    hullset.push({group: i, path: d3.geom.hull(hulls[i])});
-  }
-
-  return hullset;
+.feature {
+  fill: #ccc;
+  cursor: pointer;
 }
 
-function drawCluster(d) {
-  return curve(d.path); // 0.8
+.feature.active {
+  fill: orange;
 }
 
-// --------------------------------------------------------
+</style>
+<link rel="stylesheet" href="fonts/bariol/bariol.css"/>
+<link rel="stylesheet" href="styles/style.css"/>  
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script type="text/javascript" src="autocomplete.js"></script>
 
-var body = d3.select("body");
+<body>
+<script>
 
-var vis = body.append("svg")
-   .attr("width", width)
-   .attr("height", height);
+var width = 1600,
+    height = 400,
+    active = d3.select(null);
 
-d3.json("miserables.json", function(json) {
-  data = json;
-  for (var i=0; i<data.links.length; ++i) {
-    o = data.links[i];
-    o.source = data.nodes[o.source];
-    o.target = data.nodes[o.target];
-  }
+var svg = d3.select("body").append("svg")
+                                    .attr("width", width)
+                                    .attr("height", height);
+ 
+svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height)
+    .on("click", reset);
 
-  hullg = vis.append("g");
-  linkg = vis.append("g");
-  nodeg = vis.append("g");
+var g = svg.append("g")
+    .style("stroke-width", "1.5px");
 
-  init();
+var path = d3.geo.path();
 
-  vis.attr("opacity", 1e-6)
-    .transition()
-      .duration(1000)
-      .attr("opacity", 1);
-});
 
-function init() {
-  if (force) force.stop();
+d3.json("seats.json", function(error, data) {
+  var gg = g.selectAll("g")
+    .data(data)
+    .enter()
+    .append("g")
+    .attr("transform", function(d) { return "translate("+ d.x_axis + "," + d.y_axis + ")"; })
+    .attr("align", "center")
+    .on("click", clicked);    
 
-  net = network(data, net, getGroup, expand);
+  gg.append("rect")
+    // .attr("x", function (d) { return d.x_axis; })
+    // .attr("y", function (d) { return d.y_axis; })
+    .attr("height", function (d) { return d.height; })
+    .attr("width", function (d) { return d.width; })
+    .attr("id", function(d) { return d.employee.split(" ").join("-"); })
+    .attr("class", "feature");
+    
 
-  force = d3.layout.force()
-      .nodes(net.nodes)
-      .links(net.links)
-      .size([width, height])
-      .linkDistance(function(l, i) {
-      var n1 = l.source, n2 = l.target;
-    // larger distance for bigger groups:
-    // both between single nodes and _other_ groups (where size of own node group still counts),
-    // and between two group nodes.
-    //
-    // reduce distance for groups with very few outer links,
-    // again both in expanded and grouped form, i.e. between individual nodes of a group and
-    // nodes of another group or other group node or between two group nodes.
-    //
-    // The latter was done to keep the single-link groups ('blue', rose, ...) close.
-    return 30 +
-      Math.min(20 * Math.min((n1.size || (n1.group != n2.group ? n1.group_data.size : 0)),
-                             (n2.size || (n1.group != n2.group ? n2.group_data.size : 0))),
-           -30 +
-           30 * Math.min((n1.link_count || (n1.group != n2.group ? n1.group_data.link_count : 0)),
-                         (n2.link_count || (n1.group != n2.group ? n2.group_data.link_count : 0))),
-           100);
-      //return 150;
-    })
-    .linkStrength(function(l, i) {
-    return 1;
-    })
-    .gravity(0.05)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
-    .charge(-600)    // ... charge is important to turn single-linked groups to the outside
-    .friction(0.5)   // friction adjusted to get dampened display: less bouncy bouncy ball [Swedish Chef, anyone?]
-      .start();
-
-  hullg.selectAll("path.hull").remove();
-  hull = hullg.selectAll("path.hull")
-      .data(convexHulls(net.nodes, getGroup, off))
-    .enter().append("path")
-      .attr("class", "hull")
-      .attr("d", drawCluster)
-      .style("fill", function(d) { return fill(d.group); })
-      .on("click", function(d) {
-console.log("hull click", d, arguments, this, expand[d.group]);
-      expand[d.group] = false; init();
+  gg.append("text")
+    .attr("x", function(d) {return d.width / 2; })
+    .attr("y", function(d) { return d.height / 2 + 5; })
+    .attr("text-anchor", "middle")
+    .attr("fill", "#ffffff")
+    .attr("cursor", "pointer")
+    .attr("style", "font-size: 10px")
+    .text(function(d) { 
+      var name = d.employee.split(" "),
+          first_name = name[0],
+          last_name = name[1];
+      return first_name.charAt(0) + last_name.charAt(0); 
     });
 
-  link = linkg.selectAll("line.link").data(net.links, linkid);
-  link.exit().remove();
-  link.enter().append("line")
-      .attr("class", "link")
-      .attr("x1", function(d) { return d.source.x; })
-      .attr("y1", function(d) { return d.source.y; })
-      .attr("x2", function(d) { return d.target.x; })
-      .attr("y2", function(d) { return d.target.y; })
-      .style("stroke-width", function(d) { return d.size || 1; });
-
-  node = nodeg.selectAll("circle.node").data(net.nodes, nodeid);
-  node.exit().remove();
-  node.enter().append("circle")
-      // if (d.size) -- d.size > 0 when d is a group node.
-      .attr("class", function(d) { return "node" + (d.size?"":" leaf"); })
-      .attr("r", function(d) { return d.size ? d.size + dr : dr+1; })
-      .attr("cx", function(d) { return d.x; })
-      .attr("cy", function(d) { return d.y; })
-      .style("fill", function(d) { return fill(d.group); })
-      .on("click", function(d) {
-console.log("node click", d, arguments, this, expand[d.group]);
-        expand[d.group] = !expand[d.group];
-    init();
-      });
-
-  node.call(force.drag);
-
-  force.on("tick", function() {
-    if (!hull.empty()) {
-      hull.data(convexHulls(net.nodes, getGroup, off))
-          .attr("d", drawCluster);
-    }
-
-    link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
+  // g.selectAll("rect")
+  //   .data(data)
+  //   .enter()
+  //   .append("rect")
+  //   .attr("x", function (d) { return d.x_axis; })
+  //   .attr("y", function (d) { return d.y_axis; })
+  //   .attr("height", function (d) { return d.height; })
+  //   .attr("width", function (d) { return d.width; })
+  //   .attr("class", "feature")
+  //   .attr("id", function(d) { return d.employee; })
+  //   .on("click", clicked);    
   });
+
+function clicked(d) {
+  var dis = d3.select(this).select("rect");
+  if (active.node() === dis.node()) return reset();
+  active.classed("active", false);
+  
+  console.log(dis); 
+
+  active = dis.classed("active", true);
+
+  zoom(d.width, d.height, d.x_axis, d.y_axis, width, height);
 }
 
-    </script>
-  </body>
-</html>
+function zoom(dwidth, dheight, x_axis, y_axis, width, height) {
+  var dx = dwidth,
+      dy = dheight,
+      x = x_axis + dwidth / 2,
+      y = y_axis + dheight / 2
+
+  var scale = .5 / Math.max(dx / width, dy / height),
+      translate = [width / 2 - scale * x, height / 2 - scale * y];
+
+  g.transition()
+      .duration(750)
+      .style("stroke-width", 1.5 / scale + "px")
+      .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
+
+}
+
+function reset() {
+  active.classed("active", false);
+  active = d3.select(null);
+
+  g.transition()
+      .duration(750)
+      .style("stroke-width", "1.5px")
+      .attr("transform", "");
+}
+
+//   var rectangles = d3.select("body").selectAll("rect")
+//                              .data(data)
+//                              .enter()
+//                              .append("rect");
+
+//   var rectangleAttributes = rectangles
+//                           .attr("x", function (d) { return d.x_axis; })
+//                           .attr("y", function (d) { return d.y_axis; })
+//                           .attr("height", function (d) { return d.height; })
+//                           .attr("width", function (d) { return d.width; });
+  
+// });
+
+
+//d3.json("us.json", function(error, us) {
+//  svg.append("path")
+//      .attr("d", path({
+//        type: "MultiPolygon",
+//        coordinates: topojson.feature(us, us.objects.states).features
+//            .filter(function(d) { return d.geometry && d.geometry.coordinates.length; })
+//            .map(function(d) { var b = d3.geo.bounds(d); return [[b[0], [b[0][0], b[1][1]], b[1], [b[1][0], b[0][1]], b[0]]]; })
+//      }));
+//});
+
+    //Variable to hold autocomplete options
+    var keys = [];
+
+    // Load US States as options from CSV - but this can also be created dynamically
+    // d3.csv("states.csv",function (csv) {
+    //     keys=csv;
+    //     console.log(keys);
+    //     start();
+    // })
+
+    // // Loads employee names as options from JSON
+    d3.json("seats.json", function(error, data) {
+        for (var i = 0; i < data.length; i++) {
+            keys.push(data[i]);
+        }
+        console.log(keys);
+        start();
+    });
+
+
+
+    //Call back for when user selects an option
+    function onSelect(d) {
+      
+      
+      active.classed("active", false);
+      // console.log(dis); 
+
+      // active = dis.classed("active", true);
+
+      // if (active.node() === this) return reset();
+      // active.classed("active", false);
+      // var dis = d3.select(this);
+      // console.log(dis);
+      // active = d3.select(this).classed("active", true);
+      
+      var id = "#" + d.employee.split(" ").join("-");
+      console.log(d3.select(id));
+      active = d3.select(id).classed("active", true);
+
+      // console.log(thisRect);
+      zoom(d.width, d.height, d.x_axis, d.y_axis, width, height);
+    }
+
+    //Setup and render the autocomplete
+    function start() {
+        var mc = autocomplete(document.body)
+                .keys(keys)
+                .dataField("employee")
+                .placeHolder("Search Employee - Start typing here")
+                .width(960)
+                .height(250)
+                .onSelected(onSelect)
+                .render();
+    }
+
+</script>
+</head>
