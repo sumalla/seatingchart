@@ -12,3 +12,22 @@ seatNumber,active,employee,dept,x_axis,y_axis,height,width
 11,Active,Kevin Wilson,R&D,185,25,25,40
 12,Active,Yan Karklin,ALT,225,0,25,40
 13,Active,David Kuntz,R&D,225,25,25,40
+14,Active,Paul Robbins,Product,0,100,25,40
+15,Active,Kristen T,AQ,0,125,25,40
+16,Active,Erin M,AQ,40,100,25,40
+17,Active,Chris C,AQ,40,125,25,40
+18,OPEN,(Backfill),AQ,80,100,25,40
+19,Active,Erin C,AQ,80,125,25,40
+20,Active,Eugen Dinca,AP,145,100,25,40
+21,Active,Vishal,AQ,145,125,25,40
+22,Active,Mickey Thaler,AP,185,100,25,40
+23,Active,Steven Levitt,AP,185,125,25,40
+24,Active,Cameron Wellock,AP,225,100,25,40
+25,Active,Niki Yoshiuchi ,AP,225,125,25,40
+26,Active,Chuk Onike,Facilities,0,200,25,40
+27,OPEN,Adaptive PM (open Req),Product,40,200,25,40
+28,OPEN,Analytics PM (Backfill),Product,80,200,25,40
+120,Active,Paul K,AQT,120,200,25,40
+121,Active,Renee,AQT,160,200,25,40
+122,Active,Jordan Caras,AQT,200,200,25,40
+123,Active,Tanya,HR,240,200,25,40
