@@ -1,0 +1,14 @@
+seatNumber,active,employee,dept,x_axis,y_axis,height,width
+1,Active,David Liu,Operations,0,0,50,25
+2,Active,Josh Daniels,Operations,25,0,25,40
+3,Active,Jackie Pizzimenti,Operations,25,25,25,40
+4,Active,Christina Crimmins,Operations,65,0,25,40
+5,Active,Katia Teran,Operations,65,25,25,40
+6,Active,Chaitanya Ekanadham,ALT,105,0,25,40
+7,Active,Hillary Green-Lerman,R&D,105,25,25,40
+8,Active,Max Livingston,ALT,145,0,25,40
+9,Active,Kyle Hausmann,R&D,145,25,25,40
+10,Active,Michael Binger,ALT,185,0,25,40
+11,Active,Kevin Wilson,R&D,185,25,25,40
+12,Active,Yan Karklin,ALT,225,0,25,40
+13,Active,David Kuntz,R&D,225,25,25,40
