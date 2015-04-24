@@ -106,7 +106,6 @@ var g = svg.append("g")
 
 var path = d3.geo.path();
 
-
 d3.json("seats.json", function(error, data) {
   var gg = g.selectAll("g")
     .data(data)
@@ -114,6 +113,7 @@ d3.json("seats.json", function(error, data) {
     .append("g")
     .attr("transform", function(d) { return "translate("+ d.x_axis + "," + d.y_axis + ")"; })
     .attr("align", "center")
+    .attr("class", function(d) { return d.dept; })
     .on("click", clicked)
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide);    
@@ -152,17 +152,34 @@ d3.json("seats.json", function(error, data) {
 
     });
 
-  // g.selectAll("rect")
-  //   .data(data)
-  //   .enter()
-  //   .append("rect")
-  //   .attr("x", function (d) { return d.x_axis; })
-  //   .attr("y", function (d) { return d.y_axis; })
-  //   .attr("height", function (d) { return d.height; })
-  //   .attr("width", function (d) { return d.width; })
-  //   .attr("class", "feature")
-  //   .attr("id", function(d) { return d.employee; })
-  //   .on("click", clicked);    
+  var deptList = data.map(function(d) {return d.dept;});
+  var depts = []
+
+  for (var i in deptList) {
+    if (depts.indexOf(deptList[i]) < 0) {
+      depts.push(deptList[i]);
+    }
+  }
+  console.log(depts);
+
+  lastDept = null;
+
+  var select = d3.select("body")
+    .append("div")
+    .append("select")
+    .on("change", function() { 
+      d3.selectAll("." + lastDept).select("rect").style("fill", "#ccc");
+      d3.selectAll("." + this.value).select("rect").style("fill", "orange");
+      lastDept = this.value;
+    });
+
+  select.selectAll("option")
+      .data(depts)
+    .enter().append("option")
+      .attr("value", function(d) { return d; })
+      .text(function(d) { return d; });
+
+
   });
 
 function clicked(d) {
@@ -203,41 +220,9 @@ function reset() {
       .attr("transform", "");
 }
 
-//   var rectangles = d3.select("body").selectAll("rect")
-//                              .data(data)
-//                              .enter()
-//                              .append("rect");
 
-//   var rectangleAttributes = rectangles
-//                           .attr("x", function (d) { return d.x_axis; })
-//                           .attr("y", function (d) { return d.y_axis; })
-//                           .attr("height", function (d) { return d.height; })
-//                           .attr("width", function (d) { return d.width; });
-  
-// });
-
-
-//d3.json("us.json", function(error, us) {
-//  svg.append("path")
-//      .attr("d", path({
-//        type: "MultiPolygon",
-//        coordinates: topojson.feature(us, us.objects.states).features
-//            .filter(function(d) { return d.geometry && d.geometry.coordinates.length; })
-//            .map(function(d) { var b = d3.geo.bounds(d); return [[b[0], [b[0][0], b[1][1]], b[1], [b[1][0], b[0][1]], b[0]]]; })
-//      }));
-//});
-
-    //Variable to hold autocomplete options
     var keys = [];
 
-    // Load US States as options from CSV - but this can also be created dynamically
-    // d3.csv("states.csv",function (csv) {
-    //     keys=csv;
-    //     console.log(keys);
-    //     start();
-    // })
-
-    // // Loads employee names as options from JSON
     d3.json("seats.json", function(error, data) {
         for (var i = 0; i < data.length; i++) {
             keys.push(data[i]);
@@ -253,21 +238,11 @@ function reset() {
       
       
       active.classed("active", false);
-      // console.log(dis); 
-
-      // active = dis.classed("active", true);
-
-      // if (active.node() === this) return reset();
-      // active.classed("active", false);
-      // var dis = d3.select(this);
-      // console.log(dis);
-      // active = d3.select(this).classed("active", true);
       
       var id = "#" + d.employee.split(" ").join("-");
       console.log(d3.select(id));
       active = d3.select(id).classed("active", true);
 
-      // console.log(thisRect);
       zoom(d.width, d.height, d.x_axis, d.y_axis, width, height);
     }
 
@@ -282,6 +257,8 @@ function reset() {
                 .onSelected(onSelect)
                 .render();
     }
+
+
 
 </script>
 
