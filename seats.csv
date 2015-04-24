@@ -31,3 +31,35 @@ seatNumber,active,employee,dept,x_axis,y_axis,height,width
 121,Active,Renee,AQT,160,200,25,40
 122,Active,Jordan Caras,AQT,200,200,25,40
 123,Active,Tanya,HR,240,200,25,40
+29,Active,Michael Baldwin,Product,305,0,40,25
+30,Active,JSC,AP,330,0,40,25
+31,Active,Erion Hasanbelliu,AP,305,40,40,25
+32,Active,Illya Bomash,AP,330,40,40,25
+33,Active,Jay Wilson,AP,305,80,40,25
+34,Active,Ruben Naeff,AP,330,80,40,25
+35,Active,Oleg Semenov,AP,305,120,40,25
+36,Active,Tony Van Der Mude,AP,330,120,40,25
+37,OPEN,Dashboards TBD Engineer (open req),AP,305,160,40,25
+38,Active,Rex,AP,330,160,40,25
+39,OPEN,Dashboards TBD Analyst (open req),AP,305,200,40,25
+40,Active,Daniel.Son,AP,330,200,40,25
+41,Active,Ryan Prichard,Tech,405,15,25,50
+42,Active,Jordan Lewis,ALT,405,40,40,25
+43,OPEN,[Robert Grande],ARC,430,40,40,25
+44,Active,Rafi Shamim,ALT,405,80,40,25
+45,Active,Homin Lee,ARC,430,80,40,25
+46,Active,Giannis Neokleous,ALT,405,160,40,25
+47,Active,Shuying Luo,ARC,430,160,40,25
+48,Active,Brandon Reiss,ALT,405,200,40,25
+49,Active,Rob Murcek,ARC,430,200,40,25
+50,Active,Jules Roazen,ALT,505,15,25,50
+51,Active,John Davies,ARC,505,40,40,25
+52,Active,Miroslava Sotakova,ARC,530,40,40,25
+53,Active,Ben Pollack,ARC,505,80,40,25
+54,OPEN,[Ferdi backfill],ARC,530,80,40,25
+55,Active,Nikita Dyer,Product,505,120,40,25
+56,Active,Celia La,ARC,530,120,40,25
+57,Active,Amadeus Junqueira,ARC,505,160,40,25
+58,Active,Paul Sastrasinh,ARC,530,160,40,25
+59,Active,Raman Choudhry,ARC,505,200,40,25
+60,Active,Urjit Singh Bhatia,ARC,530,200,40,25
