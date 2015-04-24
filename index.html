@@ -70,7 +70,8 @@ rect {
 
 var width = 800,
     height = 400,
-    active = d3.select(null);
+    active = d3.select(null),
+    lastDept = null;
 
 var svg = d3.select("body").append("svg")
                                     .attr("width", width)
@@ -153,7 +154,7 @@ d3.json("seats.json", function(error, data) {
     });
 
   var deptList = data.map(function(d) {return d.dept;});
-  var depts = []
+  var depts = [""]
 
   for (var i in deptList) {
     if (depts.indexOf(deptList[i]) < 0) {
@@ -162,20 +163,46 @@ d3.json("seats.json", function(error, data) {
   }
   console.log(depts);
 
-  lastDept = null;
 
   var select = d3.select("body")
     .append("div")
     .append("select")
-    .on("change", function() { 
-      d3.selectAll("." + lastDept).select("rect").style("fill", "#ccc");
-      d3.selectAll("." + this.value).select("rect").style("fill", "orange");
+    .on("change", function() {
+      var minX = Number.POSITIVE_INFINITY,
+          maxX = Number.NEGATIVE_INFINITY,
+          minY = Number.POSITIVE_INFINITY,
+          maxY = Number.NEGATIVE_INFINITY;
+      
+      d3.selectAll("." + lastDept).select("rect").classed("active", false);
+      if (this.value == "") {
+        lastDept = null;
+        reset();
+      }
+
+      d3.selectAll("." + this.value).select("rect").classed("active", true);
+      d3.selectAll("." + this.value).select("rect").each( function(d) {
+        minX = Math.min(d.x_axis, minX);
+        maxX = Math.max(d.x_axis + d.width, maxX);
+        minY = Math.min(d.y_axis, minY);
+        maxY = Math.max(d.y_axis + d.height, maxY);
+      });
       lastDept = this.value;
+
+      dWidth = maxX - minX;
+      dHeight = maxY - minY;
+
+      console.log(dWidth);
+      console.log(dHeight);
+      console.log(minX);
+      console.log(minY);
+
+      zoom(dWidth, dHeight, minX, minY, width, height);
+
     });
 
   select.selectAll("option")
       .data(depts)
-    .enter().append("option")
+      .enter().append("option")
       .attr("value", function(d) { return d; })
       .text(function(d) { return d; });
 
@@ -186,6 +213,10 @@ function clicked(d) {
   var dis = d3.select(this).select("rect");
   if (active.node() === dis.node()) return reset();
   active.classed("active", false);
+
+  if (lastDept != null) {
+    d3.selectAll("." + lastDept).select("rect").classed("active", false);
+  }
   
   console.log(dis); 
 
@@ -211,6 +242,10 @@ function zoom(dwidth, dheight, x_axis, y_axis, width, height) {
 }
 
 function reset() {
+  if (lastDept != null) {
+    d3.selectAll("." + lastDept).select("rect").classed("active", false);
+  }
+  
   active.classed("active", false);
   active = d3.select(null);
 
