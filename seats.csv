@@ -27,10 +27,6 @@ seatNumber,active,employee,dept,x_axis,y_axis,height,width
 26,Active,Chuk Onike,Facilities,0,200,25,40
 27,OPEN,Adaptive PM (open Req),Product,40,200,25,40
 28,OPEN,Analytics PM (Backfill),Product,80,200,25,40
-120,Active,Paul K,AQT,120,200,25,40
-121,Active,Renee,AQT,160,200,25,40
-122,Active,Jordan Caras,AQT,200,200,25,40
-123,Active,Tanya,HR,240,200,25,40
 29,Active,Michael Baldwin,Product,305,0,40,25
 30,Active,JSC,AP,330,0,40,25
 31,Active,Erion Hasanbelliu,AP,305,40,40,25
@@ -63,3 +59,74 @@ seatNumber,active,employee,dept,x_axis,y_axis,height,width
 58,Active,Paul Sastrasinh,ARC,530,160,40,25
 59,Active,Raman Choudhry,ARC,505,200,40,25
 60,Active,Urjit Singh Bhatia,ARC,530,200,40,25
+61,Active,Brandon Maister,Infrastructure,635,0,25,40
+62,Active,David Siegel,Platform,635,25,25,40
+63,Active,Dmitriy Gromov,Infrastructure,675,0,25,40
+64,Active,Solon Gordon,Platform,675,25,25,40
+65,Active,Jon Sternberg,Infrastructure,715,0,25,40
+66,Active,Patrick O'Leary,Platform,715,25,25,40
+67,Active,Peter Kelley,Infrastructure,755,0,25,40
+68,Active,Jon Thorton,Platform,755,25,25,40
+69,OPEN,(Backfill),Infrastructure,795,0,25,40
+70,Active,Ilya Bagrak,Product,795,25,25,40
+71,Active,John Verducci,Infrastructure,835,0,25,40
+72,Active,Bennet Wineholt,Platform,835,25,25,40
+73,Active,Celik Sismanturk,Infrastructure,875,0,25,40
+74,Active,Tom C,Platform,875,25,25,40
+75,Active,Nat Medija,Infrastructure,915,0,25,40
+76,Active,Brendan Fay,Platform,915,25,25,40
+77,OPEN,VP Product,Product,955,0,50,25
+78,Active,Seth C,Platform,635,100,25,40
+79,Active,Stephanie K,Platform,635,125,25,40
+80,Active,Christofer H,Platform,675,100,25,40
+81,Active,James,Platform,675,125,25,40
+82,Active,Willy H,Platform,715,100,25,40
+83,Active,Ludo,Platform,715,125,25,40
+84,Active,Prithvi R,Platform,795,100,25,40
+85,Active,Gavin Linkens,Infrastructure,795,125,25,40
+86,Active,Onwukike,Platform,835,100,25,40
+87,Active,Bryan Long,Infrastructure,835,125,25,40
+88,Active,John Batali,Platform,875,100,25,40
+89,Active,Nate Burke,Test Engineering,875,125,25,40
+90,Active,Philip V,Test Engineering,765,200,25,40
+91,Active,Giancarlo G,Test Engineering,805,200,25,40
+92,Active,Chris M,Test Engineering,845,200,25,40
+93,Active,Alan G,Test Engineering,885,200,25,40
+94,Active,Al Herrera,Facilities,925,200,25,40
+95,Active,Greg H,Retail,635,275,40,25
+96,Active,Ragh,Retail,660,275,40,25
+97,Active,Mark G,Product,635,315,40,25
+98,Active,David H,Retail,660,315,40,25
+99,Active,Aaron N,Product,635,355,40,25
+100,Active,Remi C,Retail,660,355,40,25
+101,Active,Dan M,Retail,635,395,40,25
+102,Active,Antony S,Retail,660,395,40,25
+103,Active,Brad B,Retail,735,315,40,25
+104,Active,Paul Caplan,Retail,735,355,40,25
+105,Active,Alex R,Retail,735,395,40,25
+106,Active,Lauren,Retail,810,275,40,25
+107,Active,David Groff,Retail,835,275,40,25
+108,OPEN,Retail PM (backfill),Retail,810,315,40,25
+109,Active,Allin Resposso,Retail,835,315,40,25
+110,Active,Franc,Retail,810,355,40,25
+111,Active,Sharanya,Retail,835,355,40,25
+112,Active,Julia,Retail,810,395,40,25
+113,Active,Martin Collins,Retail,835,395,40,25
+114,Active,Kelly Jo Reuter,Finance,910,315,40,25
+115,Active,Bora Lee,Finance,935,315,40,25
+116,Active,Becky Remsha,Finance,910,355,40,25
+117,Active,Michaela Lehr,Finance,935,355,40,25
+118,Active,Michelle Rogers,Finance,910,395,40,25
+119,Active,Patricia Gabriel,Finance,935,395,40,25
+120,Active,Paul K,AQT,120,200,25,40
+121,Active,Renee,AQT,160,200,25,40
+122,Active,Jordan Caras,AQT,200,200,25,40
+123,Active,Tanya,HR,240,200,25,40
+124,Active,Nick Orton,Platform,595,175,25,40
+125,Active,Sarah Haskins,Platform,635,175,25,40
+126,Active,Sravan,Platform,675,175,25,40
+127,Active,Alex H,Platform,715,175,25,40
+128,Active,Jack DeLoach,Infrastructure,955,100,25,40
+129,Active,Jordan Gould,Infrastructure,955,125,25,40
+130,Active,Joel Anderson,Infrastructure,995,100,25,40
+131,Active,Kendra Garwin,Infrastructure,995,125,25,40
