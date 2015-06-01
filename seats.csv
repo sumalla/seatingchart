@@ -23,12 +23,12 @@ seatNumber,active,employee,dept,x_axis,y_axis,height,width
 22,Active,Mickey Thaler,AP,185,100,25,40
 23,Active,Steven Levitt,AP,185,125,25,40
 24,Active,Cameron Wellock,AP,225,100,25,40
-25,Active,Niki Yoshiuchi ,AP,225,125,25,40
-26,Active,Chuk Onike,Facilities,0,200,25,40
-27,OPEN,Adaptive PM (open Req),Product,40,200,25,40
+25,Active,OPEN,AP,225,125,25,40
+26,Active,Devon Pinkus - Intern,,0,200,25,40
+27,Active,Bojian Han - Intern,Product,40,200,25,40
 28,OPEN,Analytics PM (Backfill),Product,80,200,25,40
 29,Active,Michael Baldwin,Product,305,0,40,25
-30,Active,JSC,AP,330,0,40,25
+30,Active,Sid Reddy - Intern,AP,330,0,40,25
 31,Active,Erion Hasanbelliu,AP,305,40,40,25
 32,Active,Illya Bomash,AP,330,40,40,25
 33,Active,Jay Wilson,AP,305,80,40,25
@@ -64,7 +64,7 @@ seatNumber,active,employee,dept,x_axis,y_axis,height,width
 63,Active,Dmitriy Gromov,Infrastructure,675,0,25,40
 64,Active,Solon Gordon,Platform,675,25,25,40
 65,Active,Jon Sternberg,Infrastructure,715,0,25,40
-66,Active,Patrick O'Leary,Platform,715,25,25,40
+66,Active,Chloe Calvarin - Intern,Platform,715,25,25,40
 67,Active,Peter Kelley,Infrastructure,755,0,25,40
 68,Active,Jon Thorton,Platform,755,25,25,40
 69,OPEN,(Backfill),Infrastructure,795,0,25,40
@@ -84,14 +84,14 @@ seatNumber,active,employee,dept,x_axis,y_axis,height,width
 83,Active,Ludo,Platform,715,125,25,40
 84,Active,Prithvi R,Platform,795,100,25,40
 85,Active,Gavin Linkens,Infrastructure,795,125,25,40
-86,Active,Onwukike,Platform,835,100,25,40
+86,Active,Jemmin Chang - Intern,Platform,835,100,25,40
 87,Active,Bryan Long,Infrastructure,835,125,25,40
 88,Active,John Batali,Platform,875,100,25,40
 89,Active,Nate Burke,Test Engineering,875,125,25,40
 90,Active,Philip V,Test Engineering,765,200,25,40
 91,Active,Giancarlo G,Test Engineering,805,200,25,40
 92,Active,Chris M,Test Engineering,845,200,25,40
-93,Active,Alan G,Test Engineering,885,200,25,40
+93,Active,Alan Jaffe - Intern,Test Engineering,885,200,25,40
 94,Active,Al Herrera,Facilities,925,200,25,40
 95,Active,Greg H,Retail,635,275,40,25
 96,Active,Ragh,Retail,660,275,40,25
@@ -101,8 +101,8 @@ seatNumber,active,employee,dept,x_axis,y_axis,height,width
 100,Active,Remi C,Retail,660,355,40,25
 101,Active,Dan M,Retail,635,395,40,25
 102,Active,Antony S,Retail,660,395,40,25
-103,Active,Brad B,Retail,735,315,40,25
-104,Active,Paul Caplan,Retail,735,355,40,25
+103,Active,Brad,Retail,735,315,40,25
+104,Active,Daniel Chen - Intern,Retail,735,355,40,25
 105,Active,Alex R,Retail,735,395,40,25
 106,Active,Lauren,Retail,810,275,40,25
 107,Active,David Groff,Retail,835,275,40,25
