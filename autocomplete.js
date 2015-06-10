@@ -27,7 +27,7 @@ function autocomplete(parent) {
     var _data=null,
         _delay= 0,
         _selection,
-        _margin = {top: 30, right: 10, bottom: 50, left: 80},
+        _margin = {top: 30, right: 10, bottom: 50, left: 0},
         __width = 420,
         __height = 420,
         _placeHolder = "Search",
@@ -38,7 +38,7 @@ function autocomplete(parent) {
         _lastSearchTerm,
         _currentIndex,
         _keys,
-        _selectedFunction=defaultSelected;
+        _selectedFunction=defaultSelected,
         _minLength = 1,
         _dataField = "dataField",
         _labelField = "labelField";
@@ -49,13 +49,12 @@ function autocomplete(parent) {
         _selection.each(function (data) {
 
             // Select the svg element, if it exists.
-            var container = d3.select(this).select("#bp-ac").data([data]);
+            var container = d3.select(this).selectAll("#bp-ac").data([data]);
             var enter = container.enter()
                     .append("div")
                     .attr("id","bp-ac")
                     .attr("class","bp-ac")
                     .append("div")
-                    .attr("class","padded-row")
                     .attr("class","padded-row")
                     .append("div")
                     .attr("style","bp-autocomplete-holder");

@@ -1,0 +1,83 @@
+seatNumber,active,employee,dept,x_axis,y_axis,height,width
+1,OPEN,,,0,25,25,40
+2,Active,Dave Moreno,IT,40,0,25,40
+3,OPEN,,,40,25,25,40
+4,OPEN,,,80,0,25,40
+5,OPEN,,,80,25,25,40
+6,OPEN,,,120,0,25,40
+7,OPEN,,,120,25,25,40
+8,OPEN,,,160,25,25,40
+9,OPEN,,,200,0,25,40
+10,OPEN,,,200,25,25,40
+11,OPEN,,,340,0,25,40
+12,OPEN,,,340,25,25,40
+13,OPEN,,,380,25,25,40
+14,OPEN,,,420,0,25,40
+15,OPEN,,,420,25,25,40
+16,OPEN,,,460,0,25,40
+17,OPEN,,,460,25,25,40
+18,OPEN,,,500,0,25,40
+19,OPEN,,,500,25,25,40
+20,OPEN,,,540,25,25,40
+21,Active,Grace Sakong,Marketing,0,150,25,40
+22,Active,OPEN (Printer),Marketing,40,150,25,40
+23,OPEN,,Marketing,40,175,25,40
+24,Active,Mia Chubarova,Marketing,80,150,25,40
+25,OPEN,,,80,175,25,40
+26,Active,Meghan Daniels,Marketing,120,150,25,40
+27,Active,Molly Gerth,Marketing,120,175,25,40
+28,Active,Jessie Dan (Intern),Marketing,160,150,25,40
+29,OPEN,,,200,150,25,40
+30,OPEN,,,200,175,25,40
+31,Active,Greg Hitt,Content,340,150,25,40
+32,Active,OPEN (Math hire),Content,340,175,25,40
+33,Active,David Lonoff,Content,380,150,25,40
+34,Active,Cole Romano,Content,420,150,25,40
+35,Active,Jesse Sternberg,Content,420,175,25,40
+36,Active,Ashley Mucha,Content,460,150,25,40
+37,Active,Pam Hersperger,Content,460,175,25,40
+38,Active,Dylan Kolleeny,Content,500,150,25,40
+39,Active,Sara Dalziel ,Content,500,175,25,40
+40,Active,Justin Khalil (Intern),Content,540,150,25,40
+41,OPEN,,,0,300,25,40
+42,Active,Suzette Richards,Customer Service,0,325,25,40
+43,Active,Sam Hutchinson,Customer Service,40,300,25,40
+44,Active,Jackie Pereda,Customer Service,40,325,25,40
+45,Active,OPEN,Implementations/PM,80,300,25,40
+46,Active,OPEN,Implementations/PM,80,325,25,40
+47,Active,potential GraphOps hire (Retail),Implementations/PM,120,300,25,40
+48,Active,Nidhi Anarkat,Implementations/PM,120,325,25,40
+49,Active,Sam Braun,Implementations/PM,160,300,25,40
+50,Active,Annie Naftel,Implementations/PM,160,325,25,40
+51,Active,Rafa Kern,Implementations/PM,200,300,25,40
+52,Active,James Boo,Implementations/PM,200,325,25,40
+53,Active,Torlisa Jeffrey,Implementations/PM,340,300,25,40
+54,Active,Jess Nepom,Implementations/PM,340,325,25,40
+55,Active,Joana Ricou,Implementations/PM,380,300,25,40
+56,Active,open IA hire,Implementations/PM,380,325,25,40
+57,Active,please keep open ,Implementations/PM,420,300,25,40
+58,Active,please keep open ,Implementations/PM,420,325,25,40
+59,Active,OPEN,Implementations/PM,460,300,25,40
+60,Active,Lily Tong,Implementations/PM,460,325,25,40
+61,Active,Emily Litwin,Implementations/PM,500,300,25,40
+62,Active,Sally Searby,Implementations/PM,500,325,25,40
+63,Active,Jen Shea,Implementations/PM,540,300,25,40
+64,Active,Eugene Lee,Implementations/PM,540,325,25,40
+65,Active,Jose Ferreira,2nd desk,680,300,25,40
+66,Active,Diane Clear,Jose's EA,680,325,25,40
+67,Active,(keep open for BD visitors),Biz Dev,720,300,25,40
+68,Active,Contract/Paralegal,Legal,720,325,25,40
+69,Active,Mike Chapin,Legal,760,300,25,40
+70,Active,Josh Gordon,Biz Dev,760,325,25,40
+71,Active,Erin Wilson,Biz Dev,800,300,25,40
+72,Active,Kristen Weeks,Biz Dev,800,325,25,40
+73,Active,(hold BD summer intern if possible),Biz Dev,840,300,25,40
+74,Active,(keep open as BD huddle space if possible),Biz Dev,840,325,25,40
+75,OPEN,,,880,300,25,40
+76,Active,David Liu,2nd desk,880,325,25,40
+77,OPEN,,,1020,300,25,40
+78,Active,Alexa McCue,Recruiting,1020,325,25,40
+79,Active,Justine Dilworth,Recruiting,1060,300,25,40
+80,Active,Daniel Risch,Recruiting,1060,325,25,40
+81,Active,Jose Ferreira,CEO,640,0,200,100
+82,Active,Nicky Zahakos,Facilities,740,0,100,200

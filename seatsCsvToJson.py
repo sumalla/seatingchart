@@ -10,7 +10,7 @@ HEIGHT_COL = "height"
 integer_columns = [SEAT_NUMBER_COL, X_AXIS_COL, Y_AXIS_COL, WIDTH_COL,
 				   HEIGHT_COL]
 
-with open('seats.csv', 'rb') as csvfile:
+with open('seats7.csv', 'rb') as csvfile:
 	seatsreader = csv.reader(csvfile)
 	headings = next(seatsreader)
 	integer_columns_indices = map(lambda x: headings.index(x), integer_columns)
@@ -25,7 +25,7 @@ with open('seats.csv', 'rb') as csvfile:
 				curr_seat[headings[i]] = value
 		seats.append(curr_seat)
 
-	file_writer =open("seats.json", "w");
+	file_writer =open("seats7.json", "w");
 	file_writer.write(json.dumps(seats))
 	print json.dumps(seats, sort_keys=True,
                      indent=4, separators=(',', ': '))
