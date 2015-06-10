@@ -3,8 +3,8 @@ var width = 1040,
     active = d3.select(null),
     lastDept = null;
 
-var seatsJson = "https://confluence.knewton.net/download/attachments/71598121/seats.json";
-var seats7 = "https://confluence.knewton.net/download/attachments/71598121/seats7.json";
+var seatsJson = "seats.json";
+var seats7 = "seats7.json";
 
 drawSeatingChart(seatsJson);
 drawSeatingChart(seats7);
